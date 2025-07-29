@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ExcuseAI</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .star {
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: gray;
+      transition: color 0.2s ease;
+    }
+
+    .star.selected {
+      color: gold;
+    }
+
+    .star:hover,
+    .star:hover ~ .star {
+      color: gray;
+    }
+
+    .rating-section:hover .star {
+      color: gold;
+    }
+
+    .rating-section:hover .star:hover,
+    .rating-section:hover .star:hover ~ .star {
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🤖 ExcuseAI</h1>
+
+    <label for="urgency">How urgent is this?</label>
+    <select id="urgency">
+      <option value="Urgent">Urgent</option>
+      <option value="Mild">Mild</option>
+      <option value="Casual">Casual</option>
+    </select>
+
+    <label for="believability">Believability</label>
+    <input type="range" id="believability" min="0" max="100" value="50" />
+    <span id="believabilityValue">50%</span>
+
+    <label for="context">Additional context (optional)</label>
+    <textarea id="context" rows="4" placeholder="Explain what’s going on..."></textarea>
+
+    <label for="audience">Who needs to believe this excuse?</label>
+    <input type="text" id="audience" placeholder="e.g., boss, friend, teacher" />
+
+    <label for="type">Type of excuse</label>
+    <input type="text" id="type" placeholder="e.g., health issue, work overload" />
+
+    <label><input type="checkbox" id="includeProof" checked /> Include Suggested Proof?</label>
+
+    <button id="generateBtn">✨ Generate Perfect Excuse</button>
+    <button id="showTopRatedBtn">🏆 Show Top-Rated Excuse</button>
+    <br><br>
+    <a href="http://127.0.0.1:8080/fake-call/">📞 Try Fake Call</a>
+    <a href="http://127.0.0.1:808
+    0/doc-generator/">📄 Generate Document</a>
+
+
+    <div class="output-section">
+      <h2>Your Excuses</h2>
+
+      <div id="leaderboard" class="leaderboard-section">
+        <h2>🏆 Top-Rated Excuses</h2>
+        <div id="leaderboardContent"></div>
+      </div>
+
+      <div>
+        <strong>🤖 Excuse:</strong>
+        <p id="excuseOutput"></p>
+        <div id="ratingDisplay" class="star-rating-display"></div>
+      </div>
+
+      <div id="proofSection" style="display: none;">
+        <strong>🧾 Suggested Proof:</strong>
+        <p id="proofOutput"></p>
+      </div>
+
+      <div class="rating-section">
+        <strong>⭐ Rate this excuse:</strong>
+        <div id="stars">
+          <span class="star" data-value="1">★</span>
+          <span class="star" data-value="2">★</span>
+          <span class="star" data-value="3">★</span>
+          <span class="star" data-value="4">★</span>
+          <span class="star" data-value="5">★</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="audioControls" style="display: none; margin-top: 20px;">
+      <audio controls src="http://127.0.0.1:8000/static/audio/excuse_audio.mp3"></audio>
+      <br />
+      <a href="http://127.0.0.1:8000/static/audio/excuse_audio.mp3" download>Download Audio</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <!-- <script>
+    // Update believability display
+    document.getElementById("believability").addEventListener("input", function () {
+      document.getElementById("believabilityValue").textContent = `${this.value}%`;
+    });
+
+    // Star rating behavior
+    const stars = document.querySelectorAll('.star');
+
+    stars.forEach((star, index) => {
+      star.addEventListener('click', () => {
+        stars.forEach((s, i) => {
+          s.classList.toggle('selected', i <= index);
+        });
+        // Optional: Store the rating value
+        const ratingValue = index + 1;
+        console.log("Rated:", ratingValue); // You can send this to your backend or store it
+      });
+    });
+  </script> -->
+</body>
+</html>
